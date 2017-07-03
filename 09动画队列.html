@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>09动画队列</title>
+	<style>
+		.box{position:absolute;width:200px;height:100px;background: #f00;}
+	</style>
+	<script src="js/jquery-3.1.1.js"></script>
+	<script>
+		jQuery(function($){
+			/*
+				同一个元素的动画会有排队效果
+				stop():
+					* 停止正则执行的动画
+					* 是否清除队列
+			 */
+			$('button').eq(0).on('click',function(){
+				$('.box').animate({width:400,height:150},3000).delay(3000).animate({left:100},1000);
+			});
+
+			$('button').eq(1).on('click',function(){
+				$('.box').animate({top:50});
+			})
+
+			$('button.btnStop').on('click',function(){
+				$('.box').stop(true,true);
+			})
+		});
+	</script>
+</head>
+<body>
+	<button>宽高->left</button>
+	<button>top</button>
+	<button class="btnStop">停止</button>
+	<div class="box"></div>
+
+</body>
+</html>
